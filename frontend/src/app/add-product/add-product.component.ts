@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from "@angular/forms";
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -11,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
   }
@@ -38,10 +37,6 @@ export class AddProductComponent implements OnInit {
           form.reset();
       }
       );
-
-    
-
-    
   }
 
 }
