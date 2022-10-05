@@ -33,7 +33,7 @@ export class AddProductComponent implements OnInit {
             alert("Error")
             return;
           }
-          alert("Form Success");
+          alert("Successfully Added");
           form.reset();
       }
       );
