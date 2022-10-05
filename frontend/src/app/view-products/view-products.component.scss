@@ -1,0 +1,26 @@
+.body {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(218, 218, 255);
+}
+
+.table-body {
+    width: 80%;
+    height: auto;
+    max-height: 80%;
+    background-color: white;
+    margin: 0;
+    padding: 2%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-40%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 20px rgb(159, 159, 185);
+    overflow: scroll;
+}
+
+.table-title {
+    padding-bottom: 2%;
+    font-size: xx-large;
+}

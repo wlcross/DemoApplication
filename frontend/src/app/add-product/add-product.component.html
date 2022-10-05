@@ -1,35 +1,44 @@
 
+<div class="body">
+    <div class="form-body">
+        <div class="form-title"> Product Creation Form </div>
+        
+        <form #productForm="ngForm" (ngSubmit)="submitProduct(productForm.form)">
 
-<form #productForm="ngForm" (ngSubmit)="submitProduct(productForm.form)">
+            <label for="name">Product Name</label>
+            <input type = "text" class = "form-control" name = "name"
+            ngModel #name="ngModel" required>
+            <div class="alert alert-danger" *ngIf="name.touched && name.errors">
+                Error. Product Name Required.
+            </div>
+            <br>
 
-    <label for="name">Product Name</label>
-    <input type = "text" class = "form-control" name = "name"
-    ngModel #name="ngModel" required>
-    <div class="alert alert-danger" *ngIf="name.touched && name.errors">
-        Error. Product Name Required.
+            <label for="price">Product Price ($) </label>
+            <input type = "number" 
+            class = "form-control" name = "price" inputmode="decimal" min="0" step="0.01"
+            ngModel #price="ngModel" required>
+            <div class="alert alert-danger" *ngIf="price.touched && price.errors">
+                Error. Product Price Required.
+            </div>
+            <div class="alert alert-danger" *ngIf="price.valid && (100 * price.value) % 1 > 0.01">
+                Error. Please enter a valid price.
+            </div>
+            <br>
+
+            <label for="stock">Product Stock </label>
+            <input type = "number" 
+            class = "form-control" name = "stock" inputmode="decimal" min="0" step="1"
+            ngModel #stock="ngModel" required>
+            <div class="alert alert-danger" *ngIf="stock.touched && stock.errors">
+                Error. Product Stock Required.
+            </div>
+            <br>
+
+
+            <button class="btn btn-primary" [disabled]="!productForm.valid">Submit</button>
+
+
+        </form>
+
     </div>
-
-    <label for="price">Product Price ($) </label>
-    <input type = "number" 
-    class = "form-control" name = "price" inputmode="decimal" min="0" step="0.01"
-    ngModel #price="ngModel" required>
-    <div class="alert alert-danger" *ngIf="price.touched && price.errors">
-        Error. Product Price Required.
-    </div>
-    <div class="alert alert-danger" *ngIf="price.valid && (100 * price.value) % 1 > 0.01">
-        Error. Please enter a valid price.
-    </div>
-
-    <label for="stock">Product Stock </label>
-    <input type = "number" 
-    class = "form-control" name = "stock" inputmode="decimal" min="0" step="1"
-    ngModel #stock="ngModel" required>
-    <div class="alert alert-danger" *ngIf="stock.touched && stock.errors">
-        Error. Product Stock Required.
-    </div>
-
-
-    <button class="btn btn-primary" [disabled]="!productForm.valid">Submit</button>
-
-
-</form>
+</div>
