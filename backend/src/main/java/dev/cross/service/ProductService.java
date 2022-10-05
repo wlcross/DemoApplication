@@ -17,4 +17,15 @@ public class ProductService {
 	public ProductService(ProductDAO productDao) {
 		this.productDao = productDao;
 	}
+	
+	public List<Product> getProducts() {
+		return productDao.findAll();
+	}
+	
+	public Product createProduct(Product p) {
+		if (p != null) {
+			p.setId(0);
+		}
+		return productDao.save(p);
+	}
 }

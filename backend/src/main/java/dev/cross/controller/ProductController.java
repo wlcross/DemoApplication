@@ -26,25 +26,30 @@ public class ProductController {
 		this.productService = productService;
 	}
 	
-	
-	@RequestMapping(value = "/request/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Product> getProduct(@PathVariable("id") int id) {
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public ResponseEntity<List<Product>> getProducts() {
+		List<Product> product = productService.getProducts();
 		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		if (product == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(product);
+		} else if (product.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(product);
+		} 
+
+		return ResponseEntity.status(HttpStatus.OK).body(product);
 		
 	}
 	
-	@RequestMapping(value = "/request", method = RequestMethod.GET)
-	public ResponseEntity<List<Product>> getAllProducts() {
+	@RequestMapping(value = "/product", method = RequestMethod.POST)
+	public ResponseEntity<Product> createProduct(@RequestBody Product p) {
+		Product newP = productService.createProduct(p);
+		if (newP == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body(newP);
+		}
 		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		
-	}
-	
-	@RequestMapping(value = "/request", method = RequestMethod.POST)
-	public ResponseEntity<Product> createProduct() {
-		
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		
 	}
 }

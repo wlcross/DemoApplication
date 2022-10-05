@@ -17,7 +17,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	int rID;
+	int id;
 	
 	@Column(name="name")
 	String name;
@@ -27,20 +27,24 @@ public class Product {
 	
 	@Column(name="stock")
 	int stock;
+	
+	public Product () {
+		
+	}
 
-	public Product(Integer rID, String name, int price, int stock) {
-		this.rID = rID;
+	public Product(Integer id, String name, int price, int stock) {
+		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.stock = stock;
 	}
 
-	public Integer getrID() {
-		return rID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setrID(Integer rID) {
-		this.rID = rID;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
