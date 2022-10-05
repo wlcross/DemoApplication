@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -9,16 +11,37 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class AddProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http:HttpClient, private router:Router) { }
 
   ngOnInit(): void {
   }
 
   submitProduct(form:FormGroup) {
+    //console.log(form.value);
 
-    console.log(form.value);
-    alert("Form Success");
-    form.reset();
+    let url = "http://localhost:8087/product"
+    let product = {
+      "id": 0,
+      "name": form.value.name,
+      "price": form.value.price * 100,
+      "stock": form.value.stock
+    }
+
+    let sub = (this.http.post(url, product)).subscribe (
+      e => {
+          //console.log(e);
+          if (e == null) {
+            alert("Error")
+            return;
+          }
+          alert("Form Success");
+          form.reset();
+      }
+      );
+
+    
+
+    
   }
 
 }
