@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from "@angular/forms";
+
 
 @Component({
   selector: 'app-add-product',
@@ -10,6 +12,13 @@ export class AddProductComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  submitProduct(form:FormGroup) {
+
+    console.log(form.value);
+    alert("Form Success");
+    form.reset();
   }
 
 }
